@@ -203,7 +203,7 @@
 
       <div class="album py-5 bg-light">
         <div class="container">
-          <div class="row">
+          <div class="row" id="main">
             <div class="col-md-4">
               <div class="card mb-4 shadow-sm">
                 <svg
@@ -292,7 +292,7 @@
                     // DOM MANIPULATION GOES HERE
                     console.log(cardList)
 
-                    const grid = document.querySelector(".container > .row")
+                    const grid = document.getElementById('main')
 
                     for (let i = 0; i < cardList.photos.length; i++) {
                         const card= cardList.photos[i]
@@ -301,7 +301,7 @@
                         col.className = "col-sm-6 col-md-4 col-lg-3"
                         console.log(card.src.large)
                         col.innerHTML = `
-                        <div class="col-md-4">
+                        
               <div class="card mb-4 shadow-sm">
                 <img src=${card.src.large} class="card-img-top" alt="image">
                 <div class="card-body">

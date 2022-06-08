@@ -294,9 +294,8 @@
 
                     const grid = document.querySelector(".container > .row")
 
-                    for (let i = 0; i < cardList.length; i++) {
-                        const card= cardList[i]
-
+                    for (let i = 0; i < cardList.photos.length; i++) {
+                        const card= cardList.photos[i]
                         const col = document.createElement("div")
                         col.className = "col-sm-6 col-md-4 col-lg-3"
 

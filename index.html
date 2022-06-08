@@ -120,6 +120,12 @@
           font-size: 3.5rem;
         }
       }
+      .row#main {
+        visibility: hidden;
+      }
+      .row#main.something{
+        visibility: unset;
+      }
     </style>
   </head>
   <body>
@@ -286,29 +292,31 @@
       };
 
       fetch("https://api.pexels.com/v1/search?query=forest", options)
-                .then(response => response.json())
-                .then(cardList => {
-                    // HERE IS SAFE TO USE THE BOOK INFORMATION
-                    // DOM MANIPULATION GOES HERE
-                    console.log(cardList)
+        .then((response) => response.json())
+        .then((cardList) => {
+          // HERE IS SAFE TO USE THE BOOK INFORMATION
+          // DOM MANIPULATION GOES HERE
+          console.log(cardList);
 
-                    const grid = document.getElementById('main')
+          const grid = document.getElementById("main");
 
-                    for (let i = 0; i < cardList.photos.length; i++) {
-                        const card= cardList.photos[i]
-                        console.log(card)
-                        const col = document.createElement("div")
-                        col.className = "col-sm-6 col-md-4 col-lg-3"
-                        console.log(card.src.large)
-                        col.innerHTML = `
+          for (let i = 0; i < cardList.photos.length; i++) {
+            const card = cardList.photos[i];
+            console.log(card);
+            const col = document.createElement("div");
+            col.className = "col-sm-6 col-md-4 col-lg-3";
+            console.log(card.src.large);
+            col.innerHTML = `
                         
               <div class="card mb-4 shadow-sm">
-                <img src=${card.src.large} class="card-img-top" alt="image">
+                <img src=${card.src.large} class="card-img-top" alt="image" width="100%"
+                  height="225">
                 <div class="card-body">
                   <p class="card-text">
-                    This is a wider card with supporting text below as a natural
-                    lead-in to additional content. This content is a little bit
-                    longer.
+                    <span>photographer : </span>
+                    ${card.photographer} <br>
+                    <span>description : </span>
+                    ${card.alt}
                   </p>
                   <div
                     class="d-flex justify-content-between align-items-center"
@@ -332,12 +340,21 @@
                 </div>
               </div>
             </div>
-                    `
+                    `;
 
-                        grid.appendChild(col)
-                    }
-                })
-                .catch(err => console.log(err))
+            grid.appendChild(col);
+          }
+        })
+        .catch((err) => console.log(err));
+        function displayPage(){
+          const mainPart = document.querySelector('.row#main')
+          mainPart.classList.toggle('something')
+        }
+      window.onload = () => {
+        
+        const loadImagesBtn = document.querySelector('.btn.btn-primary.my-2')
+        loadImagesBtn.addEventListener("click", displayPage);
+      };
     </script>
   </body>
 </html>

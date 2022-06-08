@@ -296,13 +296,14 @@
 
                     for (let i = 0; i < cardList.photos.length; i++) {
                         const card= cardList.photos[i]
+                        console.log(card)
                         const col = document.createElement("div")
                         col.className = "col-sm-6 col-md-4 col-lg-3"
-
+                        console.log(card.src.large)
                         col.innerHTML = `
                         <div class="col-md-4">
               <div class="card mb-4 shadow-sm">
-                <img src=${card.photos} class="card-img-top" alt="image">
+                <img src=${card.src.large} class="card-img-top" alt="image">
                   <title>Placeholder</title>
                   <rect width="100%" height="100%" fill="#55595c" />
                   <text x="50%" y="50%" fill="#eceeef" dy=".3em">
